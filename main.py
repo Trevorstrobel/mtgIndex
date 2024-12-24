@@ -8,7 +8,9 @@ if not cap.isOpened():
 
 def nothing(x):
     pass
-
+def nothing2(x):
+    print("nothing 2")
+    pass
 cv.namedWindow("Trackbars")
 cv.createTrackbar("L-H", "Trackbars", 0, 255, nothing)
 cv.createTrackbar("L-S", "Trackbars", 0, 255, nothing)
@@ -31,6 +33,7 @@ while True:
         print("Cant receive frame (stream end?). Exiting...")
         break
 
+    #define UI elements
     l_h = cv.getTrackbarPos("L-H", "Trackbars")
     l_s = cv.getTrackbarPos("L-S", "Trackbars")
     l_v = cv.getTrackbarPos("L-V", "Trackbars")
@@ -39,7 +42,7 @@ while True:
     u_v = cv.getTrackbarPos("U-V", "Trackbars")
 
     area_slider = cv.getTrackbarPos("Area(px)", "Trackbars")
-
+    cv.createButton("Ramp V", nothing2, None, cv.QT_PUSH_BUTTON, 1)
 
     #ops on the frame go here.
     lower_black = np.array([l_h,l_s,l_v])
